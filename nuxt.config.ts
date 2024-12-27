@@ -5,9 +5,13 @@ export default defineNuxtConfig({
   css: [
     '@/assets/style.scss' 
   ],
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/image',  'shadcn-nuxt'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/image', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxt/icon', '@pinia/nuxt', '@pinia/nuxt'],
   shadcn: {
     prefix: '',
     componentDir: './components/ui'
-  }
+  },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
+
 })

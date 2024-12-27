@@ -1,12 +1,26 @@
-.bg-main {
+.bg-sidebar {
   background: #020520;
 }
 .bg-reg {
   background: #031728;
 }
+
+.bg-accent {
+  background-color: #00dc82 !important;
+  background: #00dc82 !important;
+}
+.color-accent {
+  color: #00dc82 !important;
+}
+
 body {
   background: #031728;
   font-size: clamp(14px, 2vw, 18px);
   font-weight: 400;
   color: #ffffff;
+}
+button:hover {
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 20px #00dc82;
+  backdrop-filter: blur(10px);
 }
