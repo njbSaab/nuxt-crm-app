@@ -12,23 +12,35 @@ const defaulValue: {user:IAuthStore} = {
     }
 }
 
-export const useAuthStore = defineStore('auth', {
-    state: () => defaulValue,
+export const useAuthStore = defineStore("auth", {
+    state: () => ({
+      user: {
+        email: "",
+        name: "",
+        status: false,
+      },
+    }),
     getters: {
-        isAuth: (state) => state.user.status
+      isAuth: (state) => state.user.status,
     },
-    actions: {    
-        logout(){
-            this.$patch(defaulValue)
-        },
-        set(input: IAuthStore){
-            this.$patch({
-                user: input
-            })
+    actions: {
+      set(input) {
+        this.$patch({ user: input });
+        localStorage.setItem("auth", JSON.stringify(input));
+      },
+      restoreAuth() {
+        const storedAuth = localStorage.getItem("auth");
+        if (storedAuth) {
+          this.$patch({ user: JSON.parse(storedAuth) });
         }
-    }
-})
-
+      },
+      logout() {
+        this.$patch({ user: { email: "", name: "", status: false } });
+        localStorage.removeItem("auth");
+      },
+    },
+  });
+  
 export const useIsLoadingStore = defineStore('isLoading', {
     state: () => ({
         isLoading: false

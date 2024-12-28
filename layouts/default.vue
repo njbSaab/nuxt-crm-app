@@ -1,32 +1,29 @@
 <template>
-    <div class="layout">
-      <div class="sidebar">
+    <div :class="{ 'nj-grid': authStore.isAuth }">
+      <div v-if="authStore.isAuth" class="sidebar">
         <Sidebar />
       </div>
-      <main class="main-content ">
+      <main class="main-content">
         <div class="wrapper">
-            <slot />
-        </div>
-        <div class="loader relative w-full h-full">
-
+          <slot />
         </div>
       </main>
     </div>
-  </template>
+</template>
   
-  <script setup>
-  import Sidebar from '@/components/layouts/Sidebar.vue'
-
-  console.log("Default layout loaded");
-  </script>
+<script setup>
+  import Sidebar from '@/components/layouts/Sidebar.vue';
+  import { useAuthStore } from '@/stores/auth.store';
   
-  <style scoped>
-  .layout {
+  const authStore = useAuthStore();
+</script>
+<style scoped>
+  .nj-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Боковая панель занимает 1/4 ширины */
+    grid-template-columns: 1fr 2fr;
     min-height: 100vh;
   }
   .main-content {
     padding: 20px;
   }
-  </style>
+</style>
