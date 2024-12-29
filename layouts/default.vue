@@ -1,5 +1,6 @@
 <template>
-    <div :class="{ 'nj-grid': authStore.isAuth }">
+    
+    <div class="h-screen w-full overflow-hidden flex items-center bg-reg w-[110%]">
       <div v-if="authStore.isAuth" class="sidebar">
         <Sidebar />
       </div>
@@ -18,12 +19,10 @@
   const authStore = useAuthStore();
 </script>
 <style scoped>
-  .nj-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    min-height: 100vh;
-  }
   .main-content {
-    padding: 20px;
+    padding: 20px 0;
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
   }
 </style>

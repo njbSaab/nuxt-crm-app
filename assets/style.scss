@@ -2,7 +2,10 @@
   background: #020520;
 }
 .bg-reg {
-  background: #031728;
+  background: linear-gradient(to right, #023e2f 0%, #033458 100%);
+}
+.bg-gradient-accent {
+  background: linear-gradient(to right, #031728 0%, #00dc8090 100%);
 }
 
 .bg-accent {
@@ -23,4 +26,44 @@ button:hover {
   transition: all 0.3s ease;
   box-shadow: 0px 0px 20px #00dc82;
   backdrop-filter: blur(10px);
+}
+.sidebar {
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+}
+.nj-card-shadow:hover {
+  box-shadow: 0px 0px 20px #00dc82;
+  backdrop-filter: blur(10px);
+}
+
+.nj-shadow-bg:hover {
+  box-shadow: 0px 0px 20px #00dc82;
+  backdrop-filter: blur(10px);
+  scale: 1.1;
+  transition: all 0.3s ease-in-out;
+  background: transparent !important;
+}
+.nj-text-shadow:hover {
+  text-shadow: 0px 0px 20px #00dc82;
+  transition: all 0.3s ease-in-out;
+}
+//* card
+.card-draggable {
+  padding: 40px 20px 20px;
+}
+.card-status {
+  position: absolute;
+  top: 20px;
+}
+.card-title {
+  padding: 10px 0 10px;
+  font-size: 18px;
+}
+.card-description {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+.card-date {
+  font-size: 10px;
 }

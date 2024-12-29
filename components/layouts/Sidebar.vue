@@ -101,4 +101,5 @@
   .logo .exit-img:hover {
     color: #00dc82 !important;
   }
+  
   </style>

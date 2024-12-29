@@ -1,18 +1,18 @@
-interface IAuthStore{
-    email: string,
-    name: string,
-    status: boolean,
-}
-
-const defaulValue: {user:IAuthStore} = {
+interface IAuthStore {
+    email: string;
+    name: string;
+    status: boolean;
+  }
+  
+  const defaulValue: { user: IAuthStore } = {
     user: {
-        email: '',
-        name: '',
-        status: false,
-    }
-}
-
-export const useAuthStore = defineStore("auth", {
+      email: "",
+      name: "",
+      status: false,
+    },
+  };
+  
+  export const useAuthStore = defineStore("auth", {
     state: () => ({
       user: {
         email: "",
@@ -21,35 +21,44 @@ export const useAuthStore = defineStore("auth", {
       },
     }),
     getters: {
-      isAuth: (state) => state.user.status,
+      isAuth: (state): boolean => state.user.status,
     },
     actions: {
-      set(input) {
+      set(input: IAuthStore) {
         this.$patch({ user: input });
-        localStorage.setItem("auth", JSON.stringify(input));
+        // Проверяем доступность localStorage
+        if (typeof window !== "undefined") {
+          localStorage.setItem("auth", JSON.stringify(input));
+        }
       },
       restoreAuth() {
-        const storedAuth = localStorage.getItem("auth");
-        if (storedAuth) {
-          this.$patch({ user: JSON.parse(storedAuth) });
+        if (typeof window !== "undefined") {
+          const storedAuth = localStorage.getItem("auth");
+          if (storedAuth) {
+            this.$patch({ user: JSON.parse(storedAuth) });
+          }
         }
       },
       logout() {
-        this.$patch({ user: { email: "", name: "", status: false } });
-        localStorage.removeItem("auth");
+        this.$patch({
+          user: { email: "", name: "", status: false },
+        });
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("auth");
+        }
       },
     },
   });
   
-export const useIsLoadingStore = defineStore('isLoading', {
+  export const useIsLoadingStore = defineStore("isLoading", {
     state: () => ({
-        isLoading: false
+      isLoading: false,
     }),
     actions: {
-        set(data: boolean){
-            this.$patch({
-                isLoading: data
-            })
-        }
-    }
-})
+      set(data: boolean) {
+        this.$patch({
+          isLoading: data,
+        });
+      },
+    },
+  });
